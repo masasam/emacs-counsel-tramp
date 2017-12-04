@@ -51,7 +51,7 @@ Since I can not remember `tramp-cleanup-all-buffers` command I set a defalias ca
 ## Requirements
 
 - Emacs 24.3 or higher
-- counsel 2.0 or higher
+- counsel 0.10.0 or higher
 
 ## Installation
 
