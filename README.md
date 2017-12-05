@@ -4,7 +4,7 @@ Tramp counsel interface for ssh server and docker and vagrant
 
 ## Screencast
 
-![counsel-tramp-gif](image/counsel-tramp.gif)
+![counsel-tramp-gif](image/screencast.gif)
 
     M-x counsel-tramp
 
