@@ -1,4 +1,4 @@
-;;; counsel-tramp.el --- Tramp counsel interface for ssh, docker, vagrant -*- lexical-binding: t; -*-
+;;; counsel-tramp.el --- Tramp ivy interface for ssh, docker, vagrant -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2017 by Masashı Mıyaura
 
