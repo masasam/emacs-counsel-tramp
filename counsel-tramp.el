@@ -102,7 +102,7 @@ You can connect your server with tramp"
   (when (package-installed-p 'vagrant-tramp)
     (unless (executable-find "vagrant")
       (error "'vagrant' is not installed")))
-  (counsel-find-file (ivy-read "Tramp:" (counsel-tramp--candidates))))
+  (counsel-find-file (ivy-read "Tramp: " (counsel-tramp--candidates))))
 
 (provide 'counsel-tramp)
 
