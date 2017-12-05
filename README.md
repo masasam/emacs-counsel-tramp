@@ -1,6 +1,6 @@
 # counsel-tramp
 
-Tramp counsel interface for ssh server and docker and vagrant
+Tramp ivy interface for ssh server and docker and vagrant
 
 ## Screencast
 
