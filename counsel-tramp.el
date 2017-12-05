@@ -34,7 +34,7 @@
 (require 'cl-lib)
 
 (defgroup counsel-tramp nil
-  "Tramp with counsel interface for ssh, docker, vagrant"
+  "Tramp with ivy interface for ssh, docker, vagrant"
   :group 'counsel)
 
 (defcustom counsel-tramp-docker-user nil
