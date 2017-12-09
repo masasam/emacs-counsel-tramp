@@ -59,7 +59,7 @@
 	    (replace-match "" t t host))
         (unless (string= host "*")
           (push
-	   (concat "/" tramp-default-method ":" host ":/")
+	   (concat "/" tramp-default-method ":" host ":")
 	   hosts)
 	  (push
 	   (concat "/ssh:" host "|sudo:" host ":/")
