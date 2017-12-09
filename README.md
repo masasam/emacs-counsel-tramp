@@ -82,6 +82,10 @@ If you want to specify multiple user name list to connect with docker-tramp.
 
 	(setq counsel-tramp-docker-user '("username1" "username2" "username3" "username4"))
 
+If you want to change initial directory when connecting with /sudo:root@localhost:.
+
+	(setq counsel-tramp-localhost-directory "/var")
+
 [melpa-link]: http://melpa.org/#/counsel-tramp
 [melpa-badge]: http://melpa.org/packages/counsel-tramp-badge.svg
 [melpa-stable-link]: http://stable.melpa.org/#/counsel-tramp

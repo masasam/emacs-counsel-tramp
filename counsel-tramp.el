@@ -42,6 +42,11 @@
   :group 'counsel-tramp
   :type 'string)
 
+(defcustom counsel-tramp-localhost-directory "/"
+  "Initial directory when connecting with /sudo:root@localhost:."
+  :group 'counsel-tramp
+  :type 'string)
+
 (defun counsel-tramp--candidates ()
   "Collect candidates for counsel-tramp."
   (let ((source (split-string
@@ -86,7 +91,7 @@
                do (progn
                     (push (concat "/vagrant:" box-name ":/") hosts)
                     (push (concat "/vagrant:" box-name "|sudo:" box-name ":/") hosts))))
-    (push "/sudo:root@localhost:/" hosts)
+    (push (concat "/sudo:root@localhost:" counsel-tramp-localhost-directory) hosts)
     (reverse hosts)))
 
 ;;;###autoload
