@@ -67,7 +67,7 @@
 	   (concat "/" tramp-default-method ":" host ":")
 	   hosts)
 	  (push
-	   (concat "/ssh:" host "|sudo:" host ":/")
+	   (concat "/ssh:" host "|sudo:root@" host ":/")
 	   hosts))))
     (when (package-installed-p 'docker-tramp)
       (cl-loop for line in (cdr (ignore-errors (apply #'process-lines "docker" (list "ps"))))
@@ -90,7 +90,7 @@
       (cl-loop for box-name in (map 'list 'cadr (vagrant-tramp--completions))
                do (progn
                     (push (concat "/vagrant:" box-name ":/") hosts)
-                    (push (concat "/vagrant:" box-name "|sudo:" box-name ":/") hosts))))
+                    (push (concat "/vagrant:" box-name "|sudo:root@" box-name ":/") hosts))))
     (push (concat "/sudo:root@localhost:" counsel-tramp-localhost-directory) hosts)
     (reverse hosts)))
 
