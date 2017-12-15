@@ -4,7 +4,7 @@
 
 ;; Author: Masashı Mıyaura
 ;; URL: https://github.com/masasam/emacs-counsel-tramp
-;; Version: 0.1
+;; Version: 0.2.1
 ;; Package-Requires: ((emacs "24.3") (counsel "0.10"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -71,7 +71,7 @@
 	   hosts))))
     (when (package-installed-p 'docker-tramp)
       (cl-loop for line in (cdr (ignore-errors (apply #'process-lines "docker" (list "ps"))))
-	       for info = (split-string line "[[:space:]]+" t)
+	       for info = (reverse (split-string line "[[:space:]]+" t))
 	       collect (progn (push
 			       (concat "/docker:" (car info) ":/")
 			       hosts)
