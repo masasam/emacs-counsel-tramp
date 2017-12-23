@@ -1,4 +1,4 @@
-# counsel-tramp
+# counsel-tramp [![melpa badge][melpa-badge]][melpa-link] [![melpa stable badge][melpa-stable-badge]][melpa-stable-link]
 
 Tramp ivy interface for ssh server and docker and vagrant
 
