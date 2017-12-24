@@ -4,7 +4,7 @@
 
 ;; Author: Masashı Mıyaura
 ;; URL: https://github.com/masasam/emacs-counsel-tramp
-;; Version: 0.2.1
+;; Version: 0.3.1
 ;; Package-Requires: ((emacs "24.3") (counsel "0.10"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -46,6 +46,28 @@
   "Initial directory when connecting with /sudo:root@localhost:."
   :group 'counsel-tramp
   :type 'string)
+
+(defcustom counsel-tramp-pre-command-hook nil
+  "Hook run before counsel-tramp.
+The hook is called with one argument that is non-nil."
+  :type 'hook)
+
+(defcustom counsel-tramp-post-command-hook nil
+  "Hook run after counsel-tramp.
+The hook is called with one argument that is non-nil."
+  :type 'hook)
+
+(defcustom counsel-tramp-quit-hook nil
+  "Hook quit counsel-tramp.
+The hook is called with one argument that is non-nil."
+  :type 'hook)
+
+(defun counsel-tramp-quit ()
+  "Quit counsel-tramp.
+Kill all remote buffers."
+  (interactive)
+  (run-hooks 'counsel-tramp-quit-hook)
+  (tramp-cleanup-all-buffers))
 
 (defun counsel-tramp--candidates ()
   "Collect candidates for counsel-tramp."
@@ -107,7 +129,9 @@ You can connect your server with tramp"
   (when (package-installed-p 'vagrant-tramp)
     (unless (executable-find "vagrant")
       (error "'vagrant' is not installed")))
-  (counsel-find-file (ivy-read "Tramp: " (counsel-tramp--candidates))))
+  (run-hooks 'counsel-tramp-pre-command-hook)
+  (counsel-find-file (ivy-read "Tramp: " (counsel-tramp--candidates)))
+  (run-hooks 'counsel-tramp-post-command-hook))
 
 (provide 'counsel-tramp)
 
