@@ -78,7 +78,7 @@ You can install `vagrant-tramp.el` from [MELPA](http://melpa.org) with package.e
 
 Setting hook that turn off extensions not used by when you use counsel-tramp.
 
-Setting hook that turn on extensions used by after counsel-tramp.
+Setting hook that turn on extensions used by after counsel-tramp-quit.
 
 ## Misc setting
 
