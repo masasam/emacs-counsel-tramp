@@ -38,7 +38,7 @@
   :group 'counsel)
 
 (defcustom counsel-tramp-docker-user nil
-  "If you want to use login user name when docker-tramp used, set variable."
+  "If you want to use login user name when `docker-tramp' used, set variable."
   :group 'counsel-tramp
   :type 'string)
 
@@ -48,17 +48,17 @@
   :type 'string)
 
 (defcustom counsel-tramp-pre-command-hook nil
-  "Hook run before counsel-tramp.
+  "Hook run before `counsel-tramp'.
 The hook is called with one argument that is non-nil."
   :type 'hook)
 
 (defcustom counsel-tramp-post-command-hook nil
-  "Hook run after counsel-tramp.
+  "Hook run after `counsel-tramp'.
 The hook is called with one argument that is non-nil."
   :type 'hook)
 
 (defcustom counsel-tramp-quit-hook nil
-  "Hook quit counsel-tramp.
+  "Hook run when `counsel-tramp-quit'.
 The hook is called with one argument that is non-nil."
   :type 'hook)
 
