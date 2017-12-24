@@ -76,7 +76,7 @@ You can install `vagrant-tramp.el` from [MELPA](http://melpa.org) with package.e
 				      (projectile-mode 1)
 				      (editorconfig-mode 1)))
 
-Setting hook that turn off extensions that is slow when you execute counsel-tramp.
+Setting hook that turn off slow extensions when you execute counsel-tramp.
 
 Setting hook that turn on extensions when you execute `counsel-tramp-quit` command.
 
