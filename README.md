@@ -80,6 +80,11 @@ Setting hook that turn off slow extensions when you execute counsel-tramp.
 
 Setting hook that turn on extensions when you execute `counsel-tramp-quit` command.
 
+If you don't make a backup files and lockfiles at remote server, it will be saved faster.
+
+	(setq make-backup-files nil)
+	(setq create-lockfiles nil)
+
 ## Misc setting
 
 If the shell of the server is zsh it is recommended to connect with bash.
