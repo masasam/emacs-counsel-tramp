@@ -89,6 +89,14 @@ If you don't make a backup files and lockfiles at remote server, it will be save
 
 ## Misc setting
 
+Besides ~/.ssh/config, you can add connections manually.
+
+	(setq counsel-tramp-custom-connections '(/ssh:domain|sudo:user@localhost:/))
+
+Example when adding more than two connections manually.
+
+	(setq counsel-tramp-custom-connections '(/ssh:domain|sudo:user@localhost:/ /ssh:domain2|sudo:user@localhost:/))
+
 If the shell of the server is zsh it is recommended to connect with bash.
 
     (eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
