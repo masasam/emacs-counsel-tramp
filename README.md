@@ -152,6 +152,31 @@ Below is not support
 
     Include conf.d/**
 
+## Support controlmaster paths
+
+You can use it as follows.
+```
+(setq helm-tramp-control-master t)
+```
+Set ~/.ssh/config as below
+```
+Host *
+  ControlMaster auto
+  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlPersist 30m
+  ForwardAgent yes
+  ServerAliveInterval 60
+```
+Execute the ssh command as follows
+```
+ssh ubuntu@1.1.1.1
+```
+~/.ssh/master-ubuntu@1.1.1.1 will be generated automatically.
+Even if there is no connection setting in ~/.ssh/config, counsel-tramp can complement like bellow.
+
+	/ssh:ubuntu@1.1.1.1:
+	/ssh:ubuntu@1.1.1.1|sudo:root@1.1.1.1:/
+
 [melpa-link]: http://melpa.org/#/counsel-tramp
 [melpa-badge]: http://melpa.org/packages/counsel-tramp-badge.svg
 [melpa-stable-link]: http://stable.melpa.org/#/counsel-tramp
