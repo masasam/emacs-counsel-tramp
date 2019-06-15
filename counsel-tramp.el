@@ -37,6 +37,11 @@
   "Tramp with ivy interface for ssh, docker, vagrant"
   :group 'counsel)
 
+(defcustom counsel-tramp-default-method "ssh"
+  "Default method when use tramp multi hop."
+  :group 'counsel-tramp
+  :type 'string)
+
 (defcustom counsel-tramp-docker-user nil
   "If you want to use login user name when `docker-tramp' used, set variable."
   :group 'counsel-tramp
@@ -112,14 +117,14 @@ Kill all remote buffers."
 		   (concat "/" tramp-default-method ":" (car result) ":")
 		   hosts)
 		  (push
-		   (concat "/ssh:" (car result) "|sudo:root@" (car result) ":/")
+		   (concat "/" counsel-tramp-default-method ":" (car result) "|sudo:root@" (car result) ":/")
 		   hosts)
 		  (pop result)))
 	    (push
 	     (concat "/" tramp-default-method ":" host ":")
 	     hosts)
 	    (push
-	     (concat "/ssh:" host "|sudo:root@" host ":/")
+	     (concat "/" counsel-tramp-default-method ":" host "|sudo:root@" host ":/")
 	     hosts))))
       (when (string-match "Include +\\(.+\\)$" host)
         (setq include-file (match-string 1 host))
@@ -147,7 +152,7 @@ Kill all remote buffers."
 	       (concat "/" tramp-default-method ":" hostuser "@" hostname "#" port ":")
 	       hosts)
 	      (push
-	       (concat "/ssh:" hostuser "@" hostname "#" port "|sudo:root@" hostname ":/")
+	       (concat "/" counsel-tramp-default-method ":" hostuser "@" hostname "#" port "|sudo:root@" hostname ":/")
 	       hosts))))))
     (when (require 'docker-tramp nil t)
       (cl-loop for line in (cdr (ignore-errors (apply #'process-lines "docker" (list "ps"))))
