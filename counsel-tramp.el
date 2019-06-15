@@ -131,7 +131,10 @@ Kill all remote buffers."
       (let ((files (counsel-tramp--directory-files
 		    (expand-file-name
 		     counsel-tramp-control-master-path)
-		    counsel-tramp-control-master-prefix)))
+		    counsel-tramp-control-master-prefix))
+	    (hostuser nil)
+	    (hostname nil)
+	    (port nil))
 	(dolist (controlmaster files)
 	  (let ((file (file-name-nondirectory controlmaster)))
 	    (when (string-match
