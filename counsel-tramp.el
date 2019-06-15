@@ -4,7 +4,7 @@
 
 ;; Author: Masashı Mıyaura
 ;; URL: https://github.com/masasam/emacs-counsel-tramp
-;; Version: 0.7.3
+;; Version: 0.7.4
 ;; Package-Requires: ((emacs "24.3") (counsel "0.10"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -135,15 +135,16 @@ Kill all remote buffers."
 	(dolist (controlmaster files)
 	  (let ((file (file-name-nondirectory controlmaster)))
 	    (when (string-match
-		   (concat counsel-tramp-control-master-prefix "\\(.+?\\)@\\(.+?\\):.+?$")
+		   (concat counsel-tramp-control-master-prefix "\\(.+?\\)@\\(.+?\\):\\(.+?\\)$")
 		   file)
 	      (setq hostuser (match-string 1 file))
 	      (setq hostname (match-string 2 file))
+	      (setq port (match-string 3 file))
 	      (push
-	       (concat "/" tramp-default-method ":" hostuser "@" hostname ":")
+	       (concat "/" tramp-default-method ":" hostuser "@" hostname "#" port ":")
 	       hosts)
 	      (push
-	       (concat "/ssh:" hostuser "@" hostname "|sudo:root@" hostname ":/")
+	       (concat "/ssh:" hostuser "@" hostname "#" port "|sudo:root@" hostname ":/")
 	       hosts))))))
     (when (require 'docker-tramp nil t)
       (cl-loop for line in (cdr (ignore-errors (apply #'process-lines "docker" (list "ps"))))
