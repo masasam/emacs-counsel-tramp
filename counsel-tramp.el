@@ -4,7 +4,7 @@
 
 ;; Author: Masashı Mıyaura
 ;; URL: https://github.com/masasam/emacs-counsel-tramp
-;; Version: 0.6.3
+;; Version: 0.7.3
 ;; Package-Requires: ((emacs "24.3") (counsel "0.10"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -44,6 +44,21 @@
 
 (defcustom counsel-tramp-localhost-directory "/"
   "Initial directory when connecting with /sudo:root@localhost:."
+  :group 'counsel-tramp
+  :type 'string)
+
+(defcustom counsel-tramp-control-master nil
+  "If you want to put out a candidate for completion from ssh controlmaster, please set to t."
+  :group 'counsel-tramp
+  :type 'string)
+
+(defcustom counsel-tramp-control-master-path "~/.ssh/"
+  "Path where ssh controlmaster exists."
+  :group 'counsel-tramp
+  :type 'string)
+
+(defcustom counsel-tramp-control-master-prefix "master-"
+  "Prefix of ssh controlmaster."
   :group 'counsel-tramp
   :type 'string)
 
@@ -112,6 +127,24 @@ Kill all remote buffers."
           (setq include-file (concat (file-name-as-directory "~/.ssh") include-file)))
         (when (file-exists-p include-file)
           (setq hosts (append hosts (counsel-tramp--candidates include-file))))))
+    (when counsel-tramp-control-master
+      (let ((files (counsel-tramp--directory-files
+		    (expand-file-name
+		     counsel-tramp-control-master-path)
+		    counsel-tramp-control-master-prefix)))
+	(dolist (controlmaster files)
+	  (let ((file (file-name-nondirectory controlmaster)))
+	    (when (string-match
+		   (concat counsel-tramp-control-master-prefix "\\(.+?\\)@\\(.+?\\):.+?$")
+		   file)
+	      (setq hostuser (match-string 1 file))
+	      (setq hostname (match-string 2 file))
+	      (push
+	       (concat "/" tramp-default-method ":" hostuser "@" hostname ":")
+	       hosts)
+	      (push
+	       (concat "/ssh:" hostuser "@" hostname "|sudo:root@" hostname ":/")
+	       hosts))))))
     (when (require 'docker-tramp nil t)
       (cl-loop for line in (cdr (ignore-errors (apply #'process-lines "docker" (list "ps"))))
 	       for info = (reverse (split-string line "[[:space:]]+" t))
@@ -136,6 +169,29 @@ Kill all remote buffers."
 		    (push (concat "/vagrant:" box-name "|sudo:root@" box-name ":/") hosts))))
     (push (concat "/sudo:root@localhost:" counsel-tramp-localhost-directory) hosts)
     (reverse hosts)))
+
+(defun counsel-tramp--directory-files (dir regexp)
+  "Return list of all files under DIR that have file names matching REGEXP."
+  (let ((result nil)
+	(files nil)
+	(tramp-mode (and tramp-mode (file-remote-p (expand-file-name dir)))))
+    (dolist (file (sort (file-name-all-completions "" dir)
+			'string<))
+      (unless (member file '("./" "../"))
+	(if (not (counsel-tramp--directory-name-p file))
+	    (when (string-match regexp file)
+	      (push (expand-file-name file dir) files)))))
+    (nconc result (nreverse files))))
+
+(defsubst counsel-tramp--directory-name-p (name)
+  "Return non-nil if NAME ends with a directory separator character."
+  (let ((len (length name))
+        (lastc ?.))
+    (if (> len 0)
+        (setq lastc (aref name (1- len))))
+    (or (= lastc ?/)
+        (and (memq system-type '(windows-nt ms-dos))
+             (= lastc ?\\)))))
 
 ;;;###autoload
 (defun counsel-tramp ()
