@@ -4,7 +4,7 @@
 
 ;; Author: Masashı Mıyaura
 ;; URL: https://github.com/masasam/emacs-counsel-tramp
-;; Version: 0.7.4
+;; Version: 0.7.5
 ;; Package-Requires: ((emacs "24.3") (counsel "0.10"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -175,7 +175,7 @@ Kill all remote buffers."
       (cl-loop for box-name in (cl-map 'list 'cadr (vagrant-tramp--completions))
 	       do (progn
 		    (push (concat "/vagrant:" box-name ":/") hosts)
-		    (push (concat "/vagrant:" box-name "|sudo:root@" box-name ":/") hosts))))
+		    (push (concat "/vagrant:" box-name "|sudo:" box-name ":/") hosts))))
     (push (concat "/sudo:root@localhost:" counsel-tramp-localhost-directory) hosts)
     (reverse hosts)))
 
