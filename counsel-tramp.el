@@ -154,7 +154,7 @@ Kill all remote buffers."
 	      (push
 	       (concat "/" counsel-tramp-default-method ":" hostuser "@" hostname "#" port "|sudo:root@" hostname ":/")
 	       hosts))))))
-    (when (require 'docker-tramp nil t)
+    (when (and (require 'docker-tramp nil t) (ignore-errors (apply #'process-lines "pgrep" (list "-f" "docker"))))
       (cl-loop for line in (cdr (ignore-errors (apply #'process-lines "docker" (list "ps"))))
 	       for info = (reverse (split-string line "[[:space:]]+" t))
 	       collect (progn (push
