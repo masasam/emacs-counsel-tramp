@@ -52,12 +52,12 @@ When you finish editing nginx.conf you clean the tramp buffer with `counsel-tram
 
 ## Installation
 
-You can install `counsel-tramp.el` from [MELPA](http://melpa.org) with package.el
-(`M-x package-install counsel-tramp`).
-For emacs version 28.2 and below, you can install `docker-tramp.el` from [MELPA](http://melpa.org) with package.el
-For emacs version 29 or higher, you can use the built-in tramp to connect to docker containers.
-(`M-x package-install docker-tramp`).
-You can install `vagrant-tramp.el` from [MELPA](http://melpa.org) with package.el
+You can install `counsel-tramp.el` from [MELPA](http://melpa.org) with package.el.  
+(`M-x package-install counsel-tramp`).  
+You can install `docker-tramp.el` from [MELPA](http://melpa.org) with package.el.  
+If you use Emacs version >= 29.0.60 then docker-tramp is no longer necessary as this functionality is built-in to Tramp.  
+(`M-x package-install docker-tramp`).  
+You can install `vagrant-tramp.el` from [MELPA](http://melpa.org) with package.el.  
 (`M-x package-install vagrant-tramp`).
 
 I recommend you are going to install [exec-path-from-shell]( https://github.com/purcell/exec-path-from-shell).
