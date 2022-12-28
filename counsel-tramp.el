@@ -209,7 +209,7 @@ You can connect your server with tramp"
   (interactive)
   (unless (file-exists-p "~/.ssh/config")
     (error "There is no ~/.ssh/config"))
-  (when (require 'docker-tramp nil t)
+  (when (or (version<= "29.0.60" emacs-version) (require 'docker-tramp nil t))
     (unless (executable-find "docker")
       (error "'docker' is not installed")))
   (when (require 'vagrant-tramp nil t)
