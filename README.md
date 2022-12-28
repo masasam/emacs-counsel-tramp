@@ -57,7 +57,7 @@ You can install `counsel-tramp.el` from [MELPA](http://melpa.org) with package.e
 You can install `docker-tramp.el` from [MELPA](http://melpa.org) with package.el.
 (`M-x package-install docker-tramp`).  
 If you use Emacs version >= 29.0.60 then docker-tramp is no longer necessary as this functionality is built-in to Tramp.  
-You can install `vagrant-tramp.el` from [MELPA](http://melpa.org) with package.el.  
+You can install `vagrant-tramp.el` from [MELPA](http://melpa.org) with package.el.
 (`M-x package-install vagrant-tramp`).
 
 I recommend you are going to install [exec-path-from-shell]( https://github.com/purcell/exec-path-from-shell).
