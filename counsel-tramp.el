@@ -1,6 +1,6 @@
 ;;; counsel-tramp.el --- Tramp ivy interface for ssh, docker, vagrant -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017-2023 by Masashı Mıyaura
+;; Copyright (C) 2017-2023 by Masashi Miyaura
 
 ;; Author: Masashi Miyaura
 ;; URL: https://github.com/masasam/emacs-counsel-tramp
