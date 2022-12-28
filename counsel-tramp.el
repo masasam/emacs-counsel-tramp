@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2017-2023 by Masashı Mıyaura
 
-;; Author: Masashı Mıyaura
+;; Author: Masashi Miyaura
 ;; URL: https://github.com/masasam/emacs-counsel-tramp
 ;; Version: 0.7.6
 ;; Package-Requires: ((emacs "24.3") (counsel "0.10"))
