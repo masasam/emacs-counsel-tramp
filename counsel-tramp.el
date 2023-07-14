@@ -4,7 +4,7 @@
 
 ;; Author: Masashi Miyaura
 ;; URL: https://github.com/masasam/emacs-counsel-tramp
-;; Version: 0.7.6
+;; Version: 0.7.7
 ;; Package-Requires: ((emacs "24.3") (counsel "0.10"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -212,7 +212,7 @@ You can connect your server with tramp"
     (error "There is no ~/.ssh/config"))
   (when (or (version<= "29.0.60" emacs-version) (require 'docker-tramp nil t))
     (unless (executable-find "docker")
-      (error "'docker' is not installed")))
+      (message "'docker' is not installed")))
   (when (require 'vagrant-tramp nil t)
     (unless (executable-find "vagrant")
       (error "'vagrant' is not installed")))
